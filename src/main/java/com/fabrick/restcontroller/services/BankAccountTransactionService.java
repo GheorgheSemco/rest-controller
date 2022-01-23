@@ -1,5 +1,8 @@
 package com.fabrick.restcontroller.services;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -9,41 +12,37 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class AccountBalanceService {
-	
-	public Object getBalance() {
-		// create an instance of RestTemplate
+public class BankAccountTransactionService {
+
+	public Object getTransactions() {
+		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		// url requested
-		String url= "https://sandbox.platfr.io/api/gbs/banking/v4.0/accounts/{accountId}/balance";
+		String url= "https://sandbox.platfr.io/api/gbs/banking/v4.0/accounts/{accountId}/transactions?fromAccountingDate={fromAccountingDate}&toAccountingDate={toAccountingDate}";
 		
-		// create the headers
+		Map<String,String> params = new HashMap<String,String>();
+		params.put("accountId", "14537780");
+		params.put("fromAccountingDate", "2019-04-01");
+		params.put("toAccountingDate", "2019-04-01");
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Auth-Schema", "S2S");
 		headers.set("apikey", "FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP");
 		
-		//create the request for the headers
 		HttpEntity<Void> request = new HttpEntity<Void>(headers);
 
-		//make the HTTP GET request
 		ResponseEntity<Object> response = restTemplate.exchange(
 				url, 
 				HttpMethod.GET, 
 				request, 
 				Object.class,
-				"14537780"
+				params
 		);
 		
-		//check control for the response
-		if (response.getStatusCode() == HttpStatus.OK) {
-		    System.out.println("Request Successful.");
-		    System.out.println(response.getBody());
-		} else {
-		    System.out.println("Request Failed");
-		    System.out.println(response.getStatusCode());
-		}
+		String responseMessage = response.getStatusCode() == HttpStatus.OK ? "Request Successful." : "Request Failed";		
+		System.out.println(responseMessage);
 		
 		return response.getBody();
+		
 	}
 }
