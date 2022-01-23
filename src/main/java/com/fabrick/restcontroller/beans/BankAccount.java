@@ -13,13 +13,28 @@ public class BankAccount {
 	private String alias;
 	private String productName;
 	private String holderName;
-	private String activateDate;
+	private String activatedDate;
 	private String currency;
-	
+
 	public BankAccount() {}
 	
-	public BankAccount(long accountId) {
-		this.setAccountId(accountId);
+    public BankAccount(long accountId, String iban, String abiCode, String cabCode, String countryCode,
+			String internationalCin, String nationalCin, String account, String alias, String productName,
+			String holderName, String activatedDate, String currency) {
+		super();
+		this.accountId = accountId;
+		this.iban = iban;
+		this.abiCode = abiCode;
+		this.cabCode = cabCode;
+		this.countryCode = countryCode;
+		this.internationalCin = internationalCin;
+		this.nationalCin = nationalCin;
+		this.account = account;
+		this.alias = alias;
+		this.productName = productName;
+		this.holderName = holderName;
+		this.activatedDate = activatedDate;
+		this.currency = currency;
 	}
 
 	public long getAccountId() {
@@ -28,6 +43,14 @@ public class BankAccount {
 
 	public void setAccountId(long accountId) {
 		this.accountId = accountId;
+	}
+	
+	public String getIban() {
+		return iban;
+	}
+
+	public void setIban(String iban) {
+		this.iban = iban;
 	}
 
 	public String getAbiCode() {
@@ -38,14 +61,6 @@ public class BankAccount {
 		this.abiCode = abiCode;
 	}
 
-	public String getIban() {
-		return iban;
-	}
-
-	public void setIban(String iban) {
-		this.iban = iban;
-	}
-	
 	public String getCabCode() {
 		return cabCode;
 	}
@@ -110,12 +125,12 @@ public class BankAccount {
 		this.holderName = holderName;
 	}
 
-	public String getActivateDate() {
-		return activateDate;
+	public String getActivatedDate() {
+		return activatedDate;
 	}
 
-	public void setActivateDate(String activateDate) {
-		this.activateDate = activateDate;
+	public void setActivatedDate(String activatedDate) {
+		this.activatedDate = activatedDate;
 	}
 
 	public String getCurrency() {
@@ -126,5 +141,12 @@ public class BankAccount {
 		this.currency = currency;
 	}
 
-
+	@Override
+	public String toString() {
+		return "BankAccount [accountId=" + accountId + ", iban=" + iban + ", abiCode=" + abiCode + ", cabCode="
+				+ cabCode + ", countryCode=" + countryCode + ", internationalCin=" + internationalCin + ", nationalCin="
+				+ nationalCin + ", account=" + account + ", alias=" + alias + ", productName=" + productName
+				+ ", holderName=" + holderName + ", activatedDate=" + activatedDate + ", currency=" + currency + "]";
+	}
+	
 }
