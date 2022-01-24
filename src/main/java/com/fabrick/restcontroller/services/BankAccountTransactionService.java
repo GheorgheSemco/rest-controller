@@ -43,6 +43,5 @@ public class BankAccountTransactionService {
 		System.out.println(responseMessage);
 		
 		return response.getBody();
-		
 	}
 }

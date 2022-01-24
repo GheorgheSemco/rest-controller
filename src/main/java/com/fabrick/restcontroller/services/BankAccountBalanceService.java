@@ -11,10 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fabrick.restcontroller.beans.BankAccountBalance;
+
 @Service
 public class BankAccountBalanceService {
 
-	//Method getBalance which show the balance of the bank account.
 	public Object getBalance() {
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -28,11 +29,11 @@ public class BankAccountBalanceService {
 		headers.set("apikey", "FXOVVXXHVCPVPBZXIJOBGUGSKHDNFRRQJP");
 		HttpEntity<Void> request = new HttpEntity<Void>(headers);
 
-		ResponseEntity<Object> response = restTemplate.exchange(	
+		ResponseEntity<BankAccountBalance> response = restTemplate.exchange(	
 				url, 	
 				HttpMethod.GET, 
 				request, 	
-				Object.class,
+				BankAccountBalance.class,
 				params
 				
 		);
