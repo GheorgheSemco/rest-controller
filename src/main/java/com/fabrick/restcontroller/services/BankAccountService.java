@@ -11,12 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.fabrick.restcontroller.beans.BankAccount;
 
 @Service
 public class BankAccountService {
 	
-	//Method getAccount which show the bank account details.
 	public Object getAccount() {
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -31,11 +29,11 @@ public class BankAccountService {
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("accountId", "14537780");
 		
-		ResponseEntity<BankAccount> response = restTemplate.exchange(
+		ResponseEntity<Object> response = restTemplate.exchange(
 				url, 
 				HttpMethod.GET, 
 				request, 
-				BankAccount.class,
+				Object.class,
 				params
 		);
 		
